@@ -35,4 +35,37 @@ fn main() {
     }
     println!("  There are {} nice strings.", nice_str_counter);
 
+    println!("Part Two:");
+    nice_str_counter = 0;
+    for line in input.lines() {
+        let mut prev_c = ' ';
+        let mut pair_found = false;
+        for c in line.chars() {
+            let pair = format!("{}{}", prev_c, c);
+            let pair_count = line.matches(pair.as_str()).count();
+            if pair_count >=2 {
+                pair_found = true;
+                break;
+            }
+            prev_c = c;
+        }
+
+        let mut first_c = ' ';
+        let mut second_c = ' ';
+        let mut triplet_found = false;
+        for c in line.chars() {
+            if c == first_c {
+                triplet_found = true;
+                break;
+            } else {
+                first_c = second_c;
+                second_c = c;
+            }
+        }
+        if pair_found && triplet_found {
+            nice_str_counter += 1;
+        }
+    }
+
+    println!("  There are {} nice strings.", nice_str_counter);
 }
