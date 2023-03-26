@@ -20,11 +20,7 @@ fn main() {
                     prev_char = c;
                 }
                 match c {
-                    'a' => counter += 1,
-                    'e' => counter += 1,
-                    'i' => counter += 1,
-                    'o' => counter += 1,
-                    'u' => counter += 1,
+                    'a' | 'e' | 'i' | 'o' | 'u' => counter += 1,
                     _ => counter += 0,
                 }
             }
