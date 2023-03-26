@@ -22,13 +22,13 @@ impl Box {
     }
 
     fn volume(&self) -> u32 {
-        self.l*self.w*self.h
+        self.l * self.w * self.h
     }
 
     fn ribbon_length(&self) -> u32 {
         let mut dim = vec![self.l, self.w, self.h];
         dim.sort();
-        2*(dim[0] + dim[1]) + self.volume()
+        2 * (dim[0] + dim[1]) + self.volume()
     }
 }
 
