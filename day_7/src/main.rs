@@ -25,7 +25,7 @@ impl Circuit {
 
         for line in input.lines() {
             let mut tokens: Vec<&str> = line.split(' ').collect();
-            let wire = tokens.pop().unwrap().to_string();
+            let out_wire = tokens.pop().unwrap().to_string();
             tokens.pop(); // Get rid of "->"
             let component = match tokens.len() {
                 1 => Component::WireSignal(tokens[0].to_string()),
@@ -33,7 +33,7 @@ impl Circuit {
                 3 => Component::Gate(tokens[0].to_string(), tokens[1].to_string(), tokens[2].to_string(),),
                 _ => panic!("Unexpected number of tokens in expression '{}'", tokens.concat()),
             };
-            self.gates.insert(wire, component);
+            self.gates.insert(out_wire, component);
         };
     }
 
