@@ -37,9 +37,13 @@ impl Circuit {
         };
     }
 
-    fn get_wire_value(&mut self, wire_name: &str) -> u16 {
+    fn get_wire_value(&mut self, wire_name: &str) -> (u16, u16) {
         let component = self.gates[wire_name].clone();
-        self.evaluate(&component)
+        let first_value = self.evaluate(&component);
+        // For part 2
+        self.wires.clear();
+        self.wires.insert("b".to_string(), first_value);
+        (first_value, self.evaluate(&component))
     }
 
     fn evaluate(&mut self, component: &Component) -> u16 {
@@ -82,5 +86,7 @@ fn main() {
     circuit.build(&filename);
     let result = circuit.get_wire_value("a");
     println!("Part One:");
-    println!("Wire 'a' signal: {}", result);
+    println!("  Wire 'a' signal: {}", result.0);
+    println!("\nPart Two: [override signal of wire 'b' with 'a' and compute 'a' again]");
+    println!("  Wire 'a' signal: {}", result.1);
 }
