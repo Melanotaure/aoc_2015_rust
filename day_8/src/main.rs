@@ -26,14 +26,14 @@ fn main() {
                 None => 1000,
             };
             let idx;
-            if idx_hex<idx_quote && idx_hex<idx_bs {
-                idx = idx_hex+4;
+            if idx_hex < idx_quote && idx_hex < idx_bs {
+                idx = idx_hex + 4;
                 hex_count += 1;
-            } else if idx_quote<idx_hex && idx_quote<idx_bs {
-                idx = idx_quote+2;
+            } else if idx_quote < idx_hex && idx_quote < idx_bs {
+                idx = idx_quote + 2;
                 quote_count += 1;
-            } else if idx_bs<idx_hex && idx_bs<idx_quote {
-                idx = idx_bs+2;
+            } else if idx_bs < idx_hex && idx_bs < idx_quote {
+                idx = idx_bs + 2;
                 bs_count += 1;
             } else {
                 idx = 0;
@@ -43,7 +43,7 @@ fn main() {
             }
             sub_line = &sub_line[idx..];
         }
-        char_count += 2 + 3*hex_count + quote_count + bs_count;
+        char_count += 2 + 3 * hex_count + quote_count + bs_count;
     }
 
     println!("Part One:");
