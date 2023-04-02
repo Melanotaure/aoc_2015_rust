@@ -48,4 +48,14 @@ fn main() {
 
     println!("Part One:");
     println!("  Total difference: {}", char_count);
+
+    char_count = 0;
+    for line in input.lines() {
+        let orig_count = line.len();
+        let line = line.escape_debug().to_string();
+        char_count += line.len() + 2 - orig_count;
+    }
+
+    println!("Part Two:");
+    println!("  Total difference: {}", char_count);
 }
