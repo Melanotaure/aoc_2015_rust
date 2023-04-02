@@ -25,6 +25,7 @@ fn main() {
     city_list.dedup();
     let heap = Heap::new(&mut city_list);
     let mut min_dist = u32::max_value();
+    let mut max_dist = 0;
     for perm in heap {
         let mut cur_dist = 0;
         for city_slice in perm.windows(2) {
@@ -35,7 +36,12 @@ fn main() {
         if cur_dist < min_dist {
             min_dist = cur_dist;
         }
+        if cur_dist > max_dist {
+            max_dist = cur_dist;
+        }
     }
     println!("Part One:");
-    println!("  Shortest distance: {}", min_dist);
+    println!("  Shortest route: {}", min_dist);
+    println!("Part Two:");
+    println!("  Longest route: {}", max_dist);
 }
