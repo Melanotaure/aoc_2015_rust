@@ -33,6 +33,7 @@ fn main() {
     let mut names: Vec<_> = names.iter().collect();
     let heap = Heap::new(&mut names);
     let mut max_h_level = 0;
+    let mut max_h_level_with_host = 0;
 
     for perm in heap {
         let mut h_level = guests_gains[perm[0]][perm[perm.len() - 1]]
@@ -44,8 +45,11 @@ fn main() {
             h_level += pair_h_level;
         }
         max_h_level = max(h_level, max_h_level);
+        max_h_level_with_host = max(h_level - h_level_min, max_h_level_with_host);
     }
 
     println!("Part One:");
     println!("  Max happiness: {}", max_h_level);
+    println!("Part Two:");
+    println!("  Max happiness: {}", max_h_level_with_host);
 }
