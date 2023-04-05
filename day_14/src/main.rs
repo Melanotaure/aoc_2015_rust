@@ -9,6 +9,7 @@ struct Reindeer {
     is_resting: bool,
     rest_tick: u32,
     flight_tick: u32,
+    points: u32,
 }
 
 impl Reindeer {
@@ -22,6 +23,7 @@ impl Reindeer {
             is_resting: false,
             rest_tick: 0,
             flight_tick: 0,
+            points: 0,
         }
     }
 }
@@ -58,9 +60,28 @@ fn main() {
                 }
             }
         }
+        reindeers.sort_by(|r1, r2| r2.traveled_distance.cmp(&r1.traveled_distance));
+        let max_dist = reindeers[0].traveled_distance;
+        reindeers[0].points += 1;
+        for reindeer in reindeers.iter_mut().skip(1) {
+            if reindeer.traveled_distance == max_dist {
+                reindeer.points += 1;
+            } else {
+                break;
+            }
+        }
     }
 
     reindeers.sort_by(|r1, r2| r2.traveled_distance.cmp(&r1.traveled_distance));
     println!("Part One:");
-    println!("  The winner is {} with a distance of {} km.", reindeers[0].name, reindeers[0].traveled_distance);
+    println!(
+        "  The winner is {} with a distance of {} km.",
+        reindeers[0].name, reindeers[0].traveled_distance
+    );
+    reindeers.sort_by(|r1, r2| r2.points.cmp(&r1.points));
+    println!("Part Two:");
+    println!(
+        "  The winner is {} with {} points.",
+        reindeers[0].name, reindeers[0].points
+    );
 }
