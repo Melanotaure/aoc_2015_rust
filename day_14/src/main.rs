@@ -60,7 +60,7 @@ fn main() {
         }
     }
 
-    for reindeer in reindeers {
-        println!("{} {}", reindeer.name, reindeer.traveled_distance);
-    }
+    reindeers.sort_by(|r1, r2| r2.traveled_distance.cmp(&r1.traveled_distance));
+    println!("Part One:");
+    println!("  The winner is {} with a distance of {} km.", reindeers[0].name, reindeers[0].traveled_distance);
 }
