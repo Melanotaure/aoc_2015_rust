@@ -19,6 +19,7 @@ fn main() {
     }
 
     let mut score_max = 0;
+    let mut score_max_500_cal = 0;
     let mut quantities = vec![0; ingredients.len()];
     for i in 0..=usize::pow(101, ingredients.len() as u32) {
         for (idx, qty) in quantities.iter_mut().enumerate() {
@@ -39,7 +40,13 @@ fn main() {
             .collect::<Vec<_>>();
         let score: i32 = mix[0..4].iter().product();
         score_max = max(score, score_max);
+        if mix[4] == 500 {
+            score_max_500_cal = max(score, score_max_500_cal);
+        }
     }
+    // /!\ to be run in release mode
     println!("Part One:");
-    println!("  highest_scoring cookie: {score_max}");
+    println!("  highest-scoring cookie: {score_max}");
+    println!("Part Two:");
+    println!("  highest-scoring cookie with 500 cal: {}", score_max_500_cal);
 }
