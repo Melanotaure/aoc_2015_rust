@@ -43,7 +43,7 @@ fn main() {
             score.0 = index;
             score.1 += 1;
         }
-        if sue.get_key_value("cats").is_some() && remembered_clues["cats"] == sue["cats"] {
+        if sue.get_key_value("cats").is_some() && remembered_clues["cats"] < sue["cats"] {
             score.0 = index;
             score.1 += 1;
         }
@@ -54,7 +54,7 @@ fn main() {
             score.1 += 1;
         }
         if sue.get_key_value("pomeranians").is_some()
-            && remembered_clues["pomeranians"] == sue["pomeranians"]
+            && remembered_clues["pomeranians"] > sue["pomeranians"]
         {
             score.0 = index;
             score.1 += 1;
@@ -67,13 +67,12 @@ fn main() {
             score.0 = index;
             score.1 += 1;
         }
-        if sue.get_key_value("goldfish").is_some()
-            && remembered_clues["goldfish"] == sue["goldfish"]
+        if sue.get_key_value("goldfish").is_some() && remembered_clues["goldfish"] > sue["goldfish"]
         {
             score.0 = index;
             score.1 += 1;
         }
-        if sue.get_key_value("trees").is_some() && remembered_clues["trees"] == sue["trees"] {
+        if sue.get_key_value("trees").is_some() && remembered_clues["trees"] < sue["trees"] {
             score.0 = index;
             score.1 += 1;
         }
@@ -91,6 +90,6 @@ fn main() {
     }
 
     scores.sort_by(|a, b| b.1.cmp(&a.1));
-    println!("Part One:");
+    println!("Part Two:");
     println!("Aunt #{} is the one!", scores[0].0 + 1);
 }
