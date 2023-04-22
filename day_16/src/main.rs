@@ -39,7 +39,15 @@ fn main() {
         let mut score: (usize, u32) = (index, 0);
 
         for (key, val) in remembered_clues.iter() {
-            if sue.get_key_value(key).is_some() && sue[key] == *val {
+            if key == "cats" || key == "trees" {
+                if sue.get_key_value(key).is_some() && sue[key] > *val {
+                    score.1 += 1;
+                }
+            } else if key == "pomeranians" || key == "goldfish" {
+                if sue.get_key_value(key).is_some() && sue[key] < *val {
+                    score.1 += 1;
+                }
+            } else if sue.get_key_value(key).is_some() && sue[key] == *val {
                 score.1 += 1;
             }
         }
@@ -48,5 +56,5 @@ fn main() {
 
     scores.sort_by(|a, b| b.1.cmp(&a.1));
     println!("Part Two:");
-    println!("Aunt #{} is the one!", scores[0].0 + 1);
+    println!("Aunt Sue #{} is the one!", scores[0].0 + 1);
 }
