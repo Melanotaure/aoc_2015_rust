@@ -37,44 +37,11 @@ fn main() {
     let mut scores: Vec<(usize, u32)> = Vec::new();
     for (index, sue) in sues.iter().enumerate() {
         let mut score: (usize, u32) = (index, 0);
-        if sue.get_key_value("children").is_some()
-            && remembered_clues["children"] == sue["children"]
-        {
-            score.1 += 1;
-        }
-        if sue.get_key_value("cats").is_some() && remembered_clues["cats"] < sue["cats"] {
-            score.1 += 1;
-        }
-        if sue.get_key_value("samoyeds").is_some()
-            && remembered_clues["samoyeds"] == sue["samoyeds"]
-        {
-            score.1 += 1;
-        }
-        if sue.get_key_value("pomeranians").is_some()
-            && remembered_clues["pomeranians"] > sue["pomeranians"]
-        {
-            score.1 += 1;
-        }
-        if sue.get_key_value("akitas").is_some() && remembered_clues["akitas"] == sue["akitas"] {
-            score.1 += 1;
-        }
-        if sue.get_key_value("vizslas").is_some() && remembered_clues["vizslas"] == sue["vizslas"] {
-            score.1 += 1;
-        }
-        if sue.get_key_value("goldfish").is_some() && remembered_clues["goldfish"] > sue["goldfish"]
-        {
-            score.1 += 1;
-        }
-        if sue.get_key_value("trees").is_some() && remembered_clues["trees"] < sue["trees"] {
-            score.1 += 1;
-        }
-        if sue.get_key_value("cars").is_some() && remembered_clues["cars"] == sue["cars"] {
-            score.1 += 1;
-        }
-        if sue.get_key_value("perfumes").is_some()
-            && remembered_clues["perfumes"] == sue["perfumes"]
-        {
-            score.1 += 1;
+
+        for (key, val) in remembered_clues.iter() {
+            if sue.get_key_value(key).is_some() && sue[key] == *val {
+                score.1 += 1;
+            }
         }
         scores.push(score);
     }
